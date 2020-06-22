@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Birdie</title>
     <!-- CSS -->
-    {{ css('bootstrap') }}
-    {{ css('style') }}
+    {{ css('css/bootstrap') }}
+    {{ css('css/style') }}
 </head>
 <body>
+    <!-- Navbar -->
+    @include('partials/navbar')
     <!-- Content -->
     @!section('content')
     
     <!-- JS -->
-    {{ script('jquery') }}
-    {{ script('bootstrap') }}
+    {{ script('js/jquery') }}
+    {{ script('js/modal') }}
 </body>
 </html>
