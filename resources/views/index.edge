@@ -1,5 +1,44 @@
 @layout('layouts/master')
 
 @section('content')
-  <h1>Hello</h1>
+    <div class="container">
+        <!-- Sistem Messages -->
+        <div class="text-center">
+            @if(flashMessage('successMessage'))
+                <div class="alert alert-primary" role="alert">
+                    <strong>{{ flashMessage('successMessage') }}</strong>
+                </div>
+            @endif
+        </div>
+        <!-- Posts -->
+        <div class="row">
+            @each(post in posts)
+              <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <div class="card-body">
+                        <span>{{post.username}}</span>
+                        <p>{{post.content}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small>Posted at{{}}</small>
+                    </div>
+                    @if(auth.user.id == auth.user_id)
+                      <div>
+                        <a href="/edit-post/{{post.id}}" class="btn btn-primary">Edit</a>
+                        <a href="/delete-post/{{post.id}}" class="btn btn-danger">Delete</a>
+                      </div>
+                    @endif
+                  </div>
+              </div>
+            @else
+                <div class="alert alert-primary" role="alert">
+                    <strong>Não há nenhum post</strong>
+                </div>
+            @endeach
+        </div>
+    </div>
+    
+    <!-- Modal Add Post -->
+    @include('modal-add')
+
 @endsection

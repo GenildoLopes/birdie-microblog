@@ -1,1 +1,15 @@
-/* Birdie */
+/* Birdie Microblog */
+
+nav {
+    background: #f1f4f7;
+    box-shadow: 1px 1px 3px #3f3e3e;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+}
+
+.nav-logo {
+    color: #269bbe;
+    font-size: 2rem;
+    margin: 10px;
+}

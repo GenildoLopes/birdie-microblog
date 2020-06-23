@@ -10,10 +10,14 @@
     {{ style('css/style') }}
 </head>
 <body>
+    <div class="container-fluid">
+
     <!-- Navbar -->
-    @include('partials/navbar')
+    @include('navbar')
     <!-- Content -->
     @!section('content')
+
+    </div>
     
     <!-- JS -->
     {{ script('js/jquery') }}

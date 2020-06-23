@@ -1,0 +1,37 @@
+@layout('layouts/master')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 shadow rounded">
+            <!-- Form -->
+            <form action="{{route('login.store')}}" method="POST">
+                {{ csrfField() }}
+                <!-- Flash Message -->
+                <div>
+                    @if(flashMessage('successMessage'))
+                        <span class="alert alert-success p-1">{{flashMessage('successMessage')}}</span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <!-- Email -->
+                    <input type="email" name="email" placeholder="Email" class="form-control" id="email" value="{{ old('email', '') }}">
+                    <!-- Validation Email -->
+                    {{ elIf('<span class="text-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+                    <!-- Password -->
+                    <input type="password" name="password" placeholder="Senha" class="form-control" id="password" value="{{ old('password', '') }}">
+                    <!-- Validation Password -->
+                    {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password'))}}
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+
+
+

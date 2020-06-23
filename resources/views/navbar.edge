@@ -1,0 +1,28 @@
+<nav>
+    <!-- Logo -->
+    <a href="#">
+    	<span class="nav-logo">BD</span>
+    </a>
+    @loggedIn
+		<!-- Button for create post -->
+		<img src="/img/add.svg" data-toggle="modal" data-target="#modalAdd" alt="create-post">
+		<!-- Profile -->
+		<img src="/img/user-20.svg" alt="">
+	@else
+		<ul>
+			<!-- Login -->
+			<li>
+				<a href="{{ route('login.create') }}">Login</a>
+			</li>
+			<li>
+			<!-- Register -->
+				<a href="{{ route('register.create') }}">Register</a>
+			</li>
+		</ul>
+    @endloggedIn
+</nav>
+
+
+
+
+
