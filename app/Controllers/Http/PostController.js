@@ -1,5 +1,7 @@
 'use strict'
 
+const Post = use('App/Models/Post')
+
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -17,7 +19,11 @@ class PostController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index ({ view }) {
+    const post = await Post.all()
+    return view.render({
+      posts: post.toJSON()
+    })
   }
 
   /**
@@ -40,7 +46,14 @@ class PostController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store ({ request, auth, session, response }) {
+    const post = await Post.create({
+      user_id: auth.user.id,
+      username: auth.user.username,
+      content: request.input('content')
+    })
+    session.flash({'successMessage': 'Post criado com sucesso'})
+    return response.redirect('/')
   }
 
   /**
@@ -52,7 +65,11 @@ class PostController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show ({ params, view }) {
+    const post = await Post.find(params.id)
+    return view.render('post-view', {
+      post: post.toJSON()
+    })
   }
 
   /**
@@ -75,7 +92,12 @@ class PostController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update ({ params, request, response, session }) {
+    const post = await Post.find(params.id)
+    post.content = request.input('content')
+    await post.save()
+    session.flash({'successMessage': 'Post Atualizado'})
+    return response.redirect('/')
   }
 
   /**
@@ -86,8 +108,22 @@ class PostController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response, session }) {
+    const post = await Post.find(params.id)
+    await post.delete()
+    session.flash({'successMessage': 'Post Deletado'})
+    return response.redirect('/')
   }
 }
 
 module.exports = PostController
+
+
+
+
+
+
+
+
+
+
