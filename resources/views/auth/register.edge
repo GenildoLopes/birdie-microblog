@@ -2,20 +2,18 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 shadow rounded">
+    <div class="row justify-content-center">
+        <div class="col-md-4 shadow rounded mt-5">
             <!-- Form -->
-            <form action="{{route('login.store')}}" method="POST">
+            <form action="/register-store" method="POST">
                 {{ csrfField() }}
-                <!-- Flash Message -->
-                <div>
-                    @if(flashMessage('successMessage'))
-                        <span class="alert alert-success p-1">{{flashMessage('successMessage')}}</span>
-                    @endif
-                </div>
                 <div class="form-group">
+                    <h2 class="text-center">Cadastro</h2>
                     <!-- Name -->
                     <input type="text" name="name" placeholder="Nome" class="form-control" id="name" value="{{ old('name', '')}}">
+                    <!-- Validation Name -->
+                    {{ elIf('<span class="text-danger">$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
+
                     <!-- Email -->
                     <input type="email" name="email" placeholder="Email" class="form-control" id="email" value="{{ old('email', '') }}">
                     <!-- Validation Email -->
@@ -27,7 +25,7 @@
                     {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password'))}}
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
                 </div>
             </form>
         </div>

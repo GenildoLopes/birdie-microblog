@@ -13,7 +13,7 @@ class AuthController {
 
     async postLogin({ request, auth, response}) {
         await auth.attempt(request.input('email'), request.input('password'))
-        return response.route('index')
+        return response.route('/')
     }
 
     async postRegister({ request, session, response}) {
@@ -27,7 +27,7 @@ class AuthController {
         return response.route('login.create')
     }
 
-    async logout({}) {
+    async logout({ auth, response}) {
         await auth.logout()
         return response.route('/')
     }

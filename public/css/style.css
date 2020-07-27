@@ -1,15 +1,73 @@
 /* Birdie Microblog */
 
+body {
+    background: lavender;
+}
+
 nav {
-    background: #f1f4f7;
-    box-shadow: 1px 1px 3px #3f3e3e;
-    position: fixed;
-    left: 0;
-    height: 100vh;
+    background: #1e5b97;
 }
 
 .nav-logo {
-    color: #269bbe;
+    color: #d7e9ee;
     font-size: 2rem;
-    margin: 10px;
+}
+
+.nav-link {
+    color: honeydew;
+    font-size: 18px;
+}
+
+ul li {
+    list-style: none;
+}
+
+.form-group {
+    padding: 1.2rem;
+}
+
+.form-control {
+    margin-top: 1.4rem;
+}
+
+.btn {
+    margin: 1rem;
+}
+
+/* Card */
+
+.my-card {
+    margin: auto;
+}
+
+#edit, #delete {
+    display: none;
+}
+
+@media (max-width: 576px){
+    .my-card {
+        width: 90%;
+    }
+}
+
+@media (min-width: 577px) {
+    .my-card {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px){
+    .my-card {
+        width: 30%;
+    }
+}
+
+.add-post {
+    background: white;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 7px;
+    border-radius: 50%;
+    z-index: 600;
 }

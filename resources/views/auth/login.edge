@@ -2,24 +2,23 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 shadow rounded">
+    <div class="row justify-content-center">
+         <!-- Flash Message -->
+        @if(flashMessage('successMessage'))
+            <span class="alert alert-success p-1">{{flashMessage('successMessage')}}</span>
+        @endif
+        <div class="col-md-4 shadow rounded mt-5">
             <!-- Form -->
             <form action="{{route('login.store')}}" method="POST">
                 {{ csrfField() }}
-                <!-- Flash Message -->
-                <div>
-                    @if(flashMessage('successMessage'))
-                        <span class="alert alert-success p-1">{{flashMessage('successMessage')}}</span>
-                    @endif
-                </div>
                 <div class="form-group">
+                    <h2 class="text-center">Login</h2>
                     <!-- Email -->
-                    <input type="email" name="email" placeholder="Email" class="form-control" id="email" value="{{ old('email', '') }}">
+                    <input type="email" name="email" placeholder="Email" class="form-control" id="email">
                     <!-- Validation Email -->
                     {{ elIf('<span class="text-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
                     <!-- Password -->
-                    <input type="password" name="password" placeholder="Senha" class="form-control" id="password" value="{{ old('password', '') }}">
+                    <input type="password" name="password" placeholder="Senha" class="form-control" id="password">
                     <!-- Validation Password -->
                     {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password'))}}
                 </div>

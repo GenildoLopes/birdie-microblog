@@ -21,7 +21,7 @@ class PostController {
    */
   async index ({ view }) {
     const post = await Post.all()
-    return view.render({
+    return view.render('index', {
       posts: post.toJSON()
     })
   }
@@ -35,7 +35,8 @@ class PostController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
+  async create ({ view }) {
+    return view.render('add-post')
   }
 
   /**
@@ -81,7 +82,11 @@ class PostController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
+  async edit ({ params, view }) {
+    const post = await Post.find(params.id)
+    return view.render('edit-post', {
+      post: post.toJSON()
+    })
   }
 
   /**

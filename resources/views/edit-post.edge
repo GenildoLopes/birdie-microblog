@@ -1,0 +1,14 @@
+@layout('layouts/master')
+
+@section('content')
+    <div class="container d-flex justify-content-center">
+        <!-- Form -->
+        <form action="/update-post/{{ post.id }}" method="POST">
+            {{ csrfField() }}
+            <textarea name="content" class="form-control" placeholder="Atualizar postagem" id="add-post" cols="30" rows="7">{{post.content}}</textarea>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Atualizar</button>
+            </div>
+        </form>
+    </div>
+@endsection

@@ -1,22 +1,30 @@
-<nav>
+<nav class="navbar shadow">
     <!-- Logo -->
     <a href="#">
     	<span class="nav-logo">BD</span>
     </a>
     @loggedIn
 		<!-- Button for create post -->
-		<img src="/img/add.svg" data-toggle="modal" data-target="#modalAdd" alt="create-post">
-		<!-- Profile -->
-		<img src="/img/user-20.svg" alt="">
+		<div class="add-post shadow">
+			<a href="{{ route('create.post') }}">
+				<img src="/img/add.svg" alt="Add Post">
+			</a>
+		</div>
+		<div class="d-flex">
+			<!-- Username -->
+			<span class="mr-2 text-white">Olá {{auth.user.username}}</span>
+			<!-- Sair -->
+			<a class="nav-link" href="/logout">Sair</a>
+		</div>
 	@else
-		<ul>
+		<ul class="nav">
 			<!-- Login -->
-			<li>
-				<a href="{{ route('login.create') }}">Login</a>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('login.create') }}">Login</a>
 			</li>
-			<li>
 			<!-- Register -->
-				<a href="{{ route('register.create') }}">Register</a>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('register.create') }}">Register</a>
 			</li>
 		</ul>
     @endloggedIn
